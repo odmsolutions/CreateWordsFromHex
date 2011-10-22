@@ -8,8 +8,9 @@ def make_word_list(input_filename, output_filename):
     this will read in comma and newline seperated values, strip out extra spaces.
     It will strip out words with less than 3 characters.
     It will then write the output, a word per line, to an output filename"""
-    word_list = open(input_filename).read().replace(" ",'').split(",")
-    filtered_list = filter(lambda word: len(word) > 3, word_list)
+    word_data = open(input_filename).read().replace(" ",'').replace("\n",",")
+    word_list = word_data.split(",")
+    filtered_list = [word for word in word_list if len(word) > 3]
     unique_set = set(filtered_list)
     open(output_filename,"w").write("\n".join(unique_set))
 
