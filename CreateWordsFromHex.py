@@ -37,8 +37,10 @@ class Converter:
     def words_from_numbers(self, numbers):
         """Create a list of words from a list of numbers and a dictionary"""
         words = []
+        offset = 0
         for number in numbers:
-            words.append(self._dictionary[number])
+            offset += number
+            words.append(self._dictionary[offset])
         return words
     
     def convert(self, digits):
