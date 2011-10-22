@@ -1,4 +1,4 @@
-Feature: Converting Digits To Words
+Feature: Converter Library API
 	
 	Scenario: Convert With A small Dictionary and 2 Digit Groups
 	  Given a dictionary list of "The","Quick","Brown","Fox","Jumps","Over","Lazy","Red","Dog","Bed","Monkey","Car"
