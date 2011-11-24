@@ -40,6 +40,7 @@ class Converter:
         offset = 0
         for number in numbers:
             offset += number
+            offset %= len(self._dictionary)
             words.append(self._dictionary[offset])
         return words
     

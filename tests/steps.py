@@ -42,3 +42,7 @@ def check_result(expected_list):
 @Then("the result should start with (list of .*)")
 def check_read_word_list_result(list_start):
     assert_equals(scc.result[:len(list_start)], list_start)
+    
+@Then("there should be no errors")
+def check_no_errors():
+    pass

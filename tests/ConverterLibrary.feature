@@ -24,3 +24,8 @@ Feature: Converter Library API
 		When I convert digits
 		Then the result should be a list of "operation", "burst", "kettle", "fork"
 		
+	Scenario: Convert a long set
+		Given a dictionary file testwordlist.txt
+		And I pass d49a20bd425c as the digits
+		When I convert digits
+		Then there should be no errors
