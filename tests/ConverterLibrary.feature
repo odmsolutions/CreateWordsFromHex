@@ -29,3 +29,9 @@ Feature: Converter Library API
 		And I pass d49a20bd425c as the digits
 		When I convert digits
 		Then there should be no errors
+		
+	Scenario: Handle Colons between digit pairs
+		Given a dictionary file testwordlist.txt
+		And I pass d4:9a:20:bd:42:5c as the digits
+		When I convert digits
+		Then there should be no errors

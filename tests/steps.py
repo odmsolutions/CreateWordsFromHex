@@ -14,7 +14,7 @@ def before(sc):
 def transform_list(list_string):
     return list(eval(list_string))
 
-@Given("I pass (\w+) as the digits")
+@Given("I pass (.*) as the digits")
 def setDigitParam(digits):
     scc.digits = digits
   

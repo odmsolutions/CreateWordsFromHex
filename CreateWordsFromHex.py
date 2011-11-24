@@ -6,6 +6,8 @@ The intent is to then have unique generated memorable phrases."""
 def split_into_chunks_of_2(string):
     """Split A String pairs of 2 Characters"""
     items = []
+    if ":" in string:
+        string = string.replace(':','')
     while len(string) > 0:
         items.append(string[:2])
         string = string[2:]
