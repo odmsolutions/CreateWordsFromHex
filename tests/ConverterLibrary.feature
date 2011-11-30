@@ -70,4 +70,3 @@ Feature: Converter Library API
 		And I set desired length to 4 words
 		When I get the text hashed to words
 		Then the result should not be a list of "sort", "stitch", "medical", "pocket"
-			

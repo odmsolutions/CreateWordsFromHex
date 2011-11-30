@@ -17,7 +17,7 @@ def digit_pairs_to_numbers(digitpairs):
         yield int(pair,16)
 
 def _hash_numbers(numbers, length):
-    '''Return a hash of the desired length for the given numbers. 0 padded'''
+    '''Return a hash of the desired length for the given numbers.'''
     max_hash_size = 16 ** length
     hash = 0
     for number in numbers:
@@ -25,7 +25,6 @@ def _hash_numbers(numbers, length):
         hash += number
     hash %= max_hash_size
     digits = hex(hash).split('x')[1]
-    digits = digits.rjust(length, '0')
     if digits.endswith('L'):
         digits = digits[:-1]
     return digits
@@ -102,3 +101,13 @@ class Converter:
         hash = get_short_salted_string_hash(text, salt, desired_length * 2)
         print hash
         return self.convert(hash)
+    
+if __name__ == "__main__":
+    '''When run as an application, take the string following, hash salted with a uuid, using the default "wordlist.txt" and produce 4 words. Note - this is not reversible'''
+    import sys
+    import uuid
+    conv = Converter()
+    conv.set_dictionary_from_file("wordlist.txt")
+    salt = uuid.uuid4().hex
+    result = conv.getHashedWordsFromText(sys.argv[1], salt, 4)
+    print ' '.join(result)
