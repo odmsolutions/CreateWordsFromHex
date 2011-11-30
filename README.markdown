@@ -7,7 +7,7 @@ AKA "operation burst kettle fork"
 What is it?
 -----------
 
-This is a utility, currently in the form of a Python Library, later to be a command line app too that will take a string of hex digits, and convert them to a list of words.
+This is a utility, and Python Library that will take a string of hex digits, and convert them to a list of words.
 
 The hex digits need to be pairs - that is a string that is divisible by two. 
 
@@ -25,8 +25,8 @@ The initial example was the source control system git, which uses SHA1 codes for
 
 No person can remember a stream of hex digits, but a few words can be quite memorable.
 
-Example Usage
--------------
+Example Usage As A Library
+--------------------------
 
 	>>> from CreateWordsFromHex import Converter
 
@@ -35,6 +35,15 @@ Example Usage
 	>>> converter.convert("fafbe34")
 	['receipt', 'present', 'journey', 'building']
 	
+Example usage as an App
+-----------------------
+
+	python CreateWordsFromHex.py <some string>
+
+You will get four unique (currently non-reversible) words for that string code. This can also be used for password generation. Note that subsequent runs will generate different numbers.
+
+http://xkcd.com/936/
+
 To Do
 -----
 
@@ -43,7 +52,9 @@ To Do
 	In the case of an IPV6 address, this will be 16 words - which is still too long. I could group by 3 or 4 digits, however, 
 these cover significantly larger spaces than the dictionary size, and it would be harder to avoid collisions.
 
-* Add the ability to be used as a command line tool.
+* Add --salt option so salting is not mandatory.
+* Add --length option to override length
+* Tests probably need a refactor
 
 Notes for testing
 -----------------
