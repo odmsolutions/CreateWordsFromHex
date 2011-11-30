@@ -35,3 +35,39 @@ Feature: Converter Library API
 		And I pass d4:9a:20:bd:42:5c as the digits
 		When I convert digits
 		Then there should be no errors
+		
+	Scenario: Reduce long list to shorter hash
+		Given I pass d4:9a:20:bd:42:5c as the digits
+		And I set desired length to 8 digits
+		When I get the shortened hash
+		Then the result length should be 8 digits.
+		
+	Scenario: Very different digits lists should have different hashes
+		Given two sets of very different digits 
+		And I set desired length to 8 digits
+		When I get both shortened hashes
+		Then the two results should be different
+	
+	Scenario: Reduce a string to a salted hashed set of digits
+		Given I pass ff:00:ff:00:ff:00 as the salt
+		And I pass "orionrobots.com" as the string
+		And I set desired length to 8 digits
+		When I get the short string hash
+		Then the result length should be 8 digits.
+	
+	Scenario: Reduce a string + salt to 4 words
+		Given I pass ff:00:ff:00:ff:00 as the salt
+		And a dictionary file testwordlist.txt
+		And I pass "orionrobots.com" as the string
+		And I set desired length to 4 words
+		When I get the text hashed to words
+		Then the result should be a list of "sort", "stitch", "medical", "pocket"
+		
+	Scenario: A reduced string with different end character shouldn't have the same result
+		Given I pass ff:00:ff:00:ff:00 as the salt
+		And a dictionary file testwordlist.txt
+		And I pass "orionrobots.co." as the string
+		And I set desired length to 4 words
+		When I get the text hashed to words
+		Then the result should not be a list of "sort", "stitch", "medical", "pocket"
+			
