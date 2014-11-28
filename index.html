@@ -10,7 +10,7 @@
     <script type="text/javascript">
         var dictionary = [];
         var spinner;
-
+        
         $(function () {
             $('#words').load('wordlist.txt', function() {
                 dictionary = $('#words').html().split('\n');
@@ -20,13 +20,17 @@
             spinner = $( "#spinner" ).spinner();
             spinner.spinner( "value", 4 );
         });
-
+        /* Gr and generate make the actual word list */
         function gr() {
             return dictionary[Math.floor(Math.random() * dictionary.length)];
         }
 
-        function generate() {
-            var word_list = Array.apply(0, new Array(spinner.spinner( "value"))).map(gr).join('-');
+        function generate(word_count) {
+            return Array.apply(0, new Array(word_count)).map(gr).join('-');
+        }
+        /* This gets settings, applies the generate and displays the output */
+        function generate_for_ui() {
+            var word_list = generate(spinner.spinner( "value"));
             $('#output').html(word_list);
         }
     </script>
@@ -46,7 +50,7 @@
     <div id="generate-params">
         <label for="spinner">Number of terms:</label>
         <input id="spinner" name="value" />
-        <button id="generate" class="btn" onclick="generate()">Generate</button>
+        <button id="generate" class="btn" onclick="generate_for_ui()">Generate</button>
     </div>
     <div id="output" class="well well-small">
     </div>
