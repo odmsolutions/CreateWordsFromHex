@@ -13,7 +13,7 @@ The hex digits need to be pairs - that is a string that is divisible by two.
 
 Live version for password generation
 ------------------------------------
-http://dannystaple.github.com/CreateWordsFromHex - This is a JS page that generates a password string in a local JS 
+http://odmsolutions.github.com/CreateWordsFromHex - This is a JS page that generates a password string in a local JS 
 page of four or more words. Read http://xkcd.com/936/ for why this is a good password system.
 
 How does it do it?
