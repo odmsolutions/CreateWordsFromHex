@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Generate Password</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var dictionary = [];
         var spinner;
-
+        
         $(function () {
             $('#words').load('wordlist.txt', function() {
                 dictionary = $('#words').html().split('\n');
@@ -19,36 +20,43 @@
             spinner = $( "#spinner" ).spinner();
             spinner.spinner( "value", 4 );
         });
-
+        /* Gr and generate make the actual word list */
         function gr() {
             return dictionary[Math.floor(Math.random() * dictionary.length)];
         }
 
-        function generate() {
-            var word_list = Array.apply(0, new Array(spinner.spinner( "value"))).map(gr).join('-');
+        function generate(word_count) {
+            return Array.apply(0, new Array(word_count)).map(gr).join('-');
+        }
+        /* This gets settings, applies the generate and displays the output */
+        function generate_for_ui() {
+            var word_list = generate(spinner.spinner( "value"));
             $('#output').html(word_list);
         }
     </script>
 </head>
 <body>
-<p>This app is all client side.<br />
-It will generate passwords that are:</p>
-<ul>
-    <li>Secure - this actually runs everything locally - view the source now- you can see how it works.</li>
-    <li>Difficult to crack - there are millions of combinations here.</li>
-    <li>Easy to remember - these random word sequences are easy for people to remember - hard for computers to crack.</li>
-    <li>Good for typing on mobiles - you can add special characters for added security yourself though.</li>
-</ul>
-
-<div id="generate-params">
-    <label for="spinner">Number of terms:</label>
-    <input id="spinner" name="value" />
-    <button id="generate" onclick="generate()">Generate</button>
-</div>
-<div id="output">
-</div>
-<div id="words" style='display: none;'>
-
+<div class="container">
+    <p>This app is all client side.<br />
+    It will generate passwords that are:</p>
+    <ul>
+        <li>Secure - this actually runs everything locally - view the source now- you can see how it works.</li>
+        <li>Difficult to crack - there are millions of combinations here.</li>
+        <li>Easy to remember - these random word sequences are easy for people to remember - hard for computers to crack.</li>
+        <li>Good for typing on mobiles - you can add special characters for added security yourself though.</li>
+    </ul>
+    <p><a href="https://github.com/odmsolutions/CreateWordsFromHex">Project on Github.com</a> - note this page is actually in the gh-pages branch</p>
+    
+    <div id="generate-params">
+        <label for="spinner">Number of terms:</label>
+        <input id="spinner" name="value" />
+        <button id="generate" class="btn" onclick="generate_for_ui()">Generate</button>
+    </div>
+    <div id="output" class="well well-small">
+    </div>
+    <div id="words" style='display: none;'>
+    
+    </div>
 </div>
 </body>
 </html>
