@@ -1,4 +1,3 @@
-'''
 Convert Words From Hex
 ======================
 
