@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Password</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        var dictionary = [];
+        var spinner;
+
+        $(function () {
+            $('#words').load('wordlist.txt', function() {
+                dictionary = $('#words').html().split('\n');
+                $('#output').html(dictionary[0]);
+            });
+
+            spinner = $( "#spinner" ).spinner();
+            spinner.spinner( "value", 4 );
+        });
+
+        function gr() {
+            return dictionary[Math.floor(Math.random() * dictionary.length)];
+        }
+
+        function generate() {
+            var word_list = Array.apply(0, new Array(spinner.spinner( "value"))).map(gr).join('-');
+            $('#output').html(word_list);
+        }
+    </script>
+</head>
+<body>
+<p>This app is all client side.<br />
+It will generate passwords that are:</p>
+<ul>
+    <li>Secure - this actually runs everything locally - view the source now- you can see how it works.</li>
+    <li>Difficult to crack - there are millions of combinations here.</li>
+    <li>Easy to remember - these random word sequences are easy for people to remember - hard for computers to crack.</li>
+    <li>Good for typing on mobiles - you can add special characters for added security yourself though.</li>
+</ul>
+<a href="https://github.com/odmsolutions/CreateWordsFromHex">Github Repo</a>
+<div id="generate-params">
+    <label for="spinner">Number of terms:</label>
+    <input id="spinner" name="value" />
+    <button id="generate" onclick="generate()">Generate</button>
+</div>
+<div id="output">
+</div>
+<div id="words" style='display: none;'>
+
+</div>
+</body>
+</html>
